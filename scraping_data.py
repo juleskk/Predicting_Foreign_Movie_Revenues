@@ -18,6 +18,8 @@ def make_soup(url):
     html = urlopen(url).read()
     soup = BeautifulSoup(html, "lxml")
     return soup
+    
+    
 def get_movie_list_url():
     #returns the urls for the top 100 movies from 2000-2015
     movie_list_url= []
@@ -35,6 +37,7 @@ def get_movie_list_url():
     return movie_list_url
 
 movie_list_url = get_movie_list_url()
+
 
 def get_categories(movie_list_url):
      # get the actual data 
