@@ -14,25 +14,9 @@ import statsmodels.api as sm
 import matplotlib.pyplot as plt
 from patsy import dmatrices
 
-data = pickle.load( open( "final_data.pkl", "rb" ) )
-df = pd.DataFrame(data, columns = ['budget', 'domestic', 'foreign', 'genre', 'lead', 'rating', 'release', 'runtime', 'studio', 'title'])
-
-budget = pd.read_csv('budgets.csv')
-budget.rename(columns=lambda x: x.strip(), inplace = True)
-
-df2 = pd.merge(df, budget, how = 'left', on = ['title', 'title'])
-
-df2.ix[df2['budget_x'].isnull(),'budget_x'] = df2['budget_y']
-df2.ix[df2['budget_x'] == 'N/A','budget_x'] = df2['budget_y']
-df2.ix[df2['domestic_x'].isnull(), 'domestic_x'] = df2['domestic_y']
-df2.ix[df2['domestic_x'] == 'N/A','domestic_x'] = df2['domestic_y']
-df2.ix[df2['foreign_x'].isnull(), 'foreign_x'] = df2['foreign_y']
-df2.ix[df2['foreign_x'] == 'N/A', 'foreign_x'] = df2['foreign_y']
-
-df = pd.DataFrame(df2, columns = ['budget_x', 'domestic_x', 'foreign_x', 'genre', 'lead', 'rating', 'release_x', 'runtime', 'studio', 'title'])
-df.rename(columns={'budget_x': 'budget', 'domestic_x': 'domestic', 'foreign_x': 'foreign', 'release_x':'release'}, inplace=True)
-df['budget'] = df['budget'].astype('str')
-
+####################################################
+## Define functions used by scraping module
+####################################################
 
 def make_millions():
     # convert budget from string to float
@@ -82,6 +66,27 @@ def make_genres3():
         else:
             temp2.append(row.split()[0])
     return temp2
+data = pickle.load( open( "final_data.pkl", "rb" ) )
+df = pd.DataFrame(data, columns = ['budget', 'domestic', 'foreign', 'genre', 'lead', 'rating', 'release', 'runtime', 'studio', 'title'])
+
+budget = pd.read_csv('budgets.csv')
+budget.rename(columns=lambda x: x.strip(), inplace = True)
+
+df2 = pd.merge(df, budget, how = 'left', on = ['title', 'title'])
+
+df2.ix[df2['budget_x'].isnull(),'budget_x'] = df2['budget_y']
+df2.ix[df2['budget_x'] == 'N/A','budget_x'] = df2['budget_y']
+df2.ix[df2['domestic_x'].isnull(), 'domestic_x'] = df2['domestic_y']
+df2.ix[df2['domestic_x'] == 'N/A','domestic_x'] = df2['domestic_y']
+df2.ix[df2['foreign_x'].isnull(), 'foreign_x'] = df2['foreign_y']
+df2.ix[df2['foreign_x'] == 'N/A', 'foreign_x'] = df2['foreign_y']
+
+df = pd.DataFrame(df2, columns = ['budget_x', 'domestic_x', 'foreign_x', 'genre', 'lead', 'rating', 'release_x', 'runtime', 'studio', 'title'])
+df.rename(columns={'budget_x': 'budget', 'domestic_x': 'domestic', 'foreign_x': 'foreign', 'release_x':'release'}, inplace=True)
+df['budget'] = df['budget'].astype('str')
+
+
+
 
 make_millions()
 df = clean_data(df)
