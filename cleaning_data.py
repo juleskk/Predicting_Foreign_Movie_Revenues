@@ -1,7 +1,6 @@
 
 # coding: utf-8
 
-# In[146]:
 
 import pickle
 import requests
@@ -104,62 +103,6 @@ df['foreign'] = df['foreign'].astype(int)
 df['domestic'] = df['domestic'].astype(int)
 df['genre2'] = temp 
 df['genre3'] = temp2
-
-df.ix[df['year'] == 2000,'budget'] = df['budget']*1.38
-df.ix[df['year'] == 2000,'foreign'] = df['foreign']*1.38
-df.ix[df['year'] == 2000,'domestic'] = df['domestic']*1.38
-
-df.ix[df['year'] == 2001,'budget'] = df['budget']*1.34
-df.ix[df['year'] == 2001,'foreign'] = df['foreign']*1.34
-df.ix[df['year'] == 2001,'domestic'] = df['domestic']*1.34
-
-df.ix[df['year'] == 2002,'budget'] = df['budget']*1.32
-df.ix[df['year'] == 2002,'foreign'] = df['foreign']*1.32
-df.ix[df['year'] == 2002,'domestic'] = df['domestic']*1.32
-
-df.ix[df['year'] == 2003,'budget'] = df['budget']*1.29
-df.ix[df['year'] == 2003,'foreign'] = df['foreign']*1.29
-df.ix[df['year'] == 2003,'domestic'] = df['domestic']*1.39
-
-df.ix[df['year'] == 2004,'budget'] = df['budget']*1.26
-df.ix[df['year'] == 2004,'foreign'] = df['foreign']*1.26
-df.ix[df['year'] == 2004,'domestic'] = df['domestic']*1.26
-
-df.ix[df['year'] == 2005,'budget'] = df['budget']*1.22
-df.ix[df['year'] == 2005,'foreign'] = df['foreign']*1.22
-df.ix[df['year'] == 2005,'domestic'] = df['domestic']*1.22
-
-df.ix[df['year'] == 2006,'budget'] = df['budget']*1.18
-df.ix[df['year'] == 2006,'foreign'] = df['foreign']*1.18
-df.ix[df['year'] == 2006,'domestic'] = df['domestic']*1.18
-
-df.ix[df['year'] == 2007,'budget'] = df['budget']*1.15
-df.ix[df['year'] == 2007,'foreign'] = df['foreign']*1.15
-df.ix[df['year'] == 2007,'domestic'] = df['domestic']*1.15
-
-df.ix[df['year'] == 2008,'budget'] = df['budget']*1.10
-df.ix[df['year'] == 2008,'foreign'] = df['foreign']*1.10
-df.ix[df['year'] == 2008,'domestic'] = df['domestic']*1.10
-
-df.ix[df['year'] == 2009,'budget'] = df['budget']*1.11
-df.ix[df['year'] == 2009,'foreign'] = df['foreign']*1.11
-df.ix[df['year'] == 2009,'domestic'] = df['domestic']*1.11
-
-df.ix[df['year'] == 2010,'budget'] = df['budget']*1.09
-df.ix[df['year'] == 2010,'foreign'] = df['foreign']*1.09
-df.ix[df['year'] == 2010,'domestic'] = df['domestic']*1.09
-
-df.ix[df['year'] == 2011,'budget'] = df['budget']*1.06
-df.ix[df['year'] == 2011,'foreign'] = df['foreign']*1.06
-df.ix[df['year'] == 2011,'domestic'] = df['domestic']*1.06
-
-df.ix[df['year'] == 2012,'budget'] = df['budget']*1.04
-df.ix[df['year'] == 2012,'foreign'] = df['foreign']*1.04
-df.ix[df['year'] == 2012,'domestic'] = df['domestic']*1.04
-
-df.ix[df['year'] == 2013,'budget'] = df['budget']*1.02
-df.ix[df['year'] == 2013,'foreign'] = df['foreign']*1.02
-df.ix[df['year'] == 2013,'domestic'] = df['domestic']*1.02
 
 
 # Make new genre categories 
