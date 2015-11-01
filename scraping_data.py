@@ -1,6 +1,7 @@
 
 # coding: utf-8
-
+# Part 1 of 3
+# Gathers raw data from Box Office Mojo and creates DataFrame
 import requests
 from bs4 import BeautifulSoup
 from urllib2 import urlopen
@@ -100,11 +101,13 @@ def get_data_attributes(movie_list_url):
     
     return rows_list
     
+    
 ####################################################
-## Begin executable code
+## Begin executable code. 
+##Gather data from source website(Box Office Mojo)
 ####################################################
     
-rows_list = get_categories(movie_list_url)
+rows_list = get_data_attributes(movie_list_url)
 movie_list_url = get_movie_list_url()
 
 
