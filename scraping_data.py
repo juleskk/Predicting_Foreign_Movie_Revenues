@@ -41,10 +41,8 @@ def get_movie_list_url():
             
     return movie_list_url
 
-
-
-
-def get_categories(movie_list_url):
+# Returns a dictionary of data attributes 
+def get_data_attributes(movie_list_url):
      # get the actual data 
     rows_list = []
     
@@ -54,6 +52,7 @@ def get_categories(movie_list_url):
     
         title = str(soup.find_all('b')[1].text)
         x = str(soup.find_all('b')[3].text)
+        # explanation 
         if 'Domestic Lifetime Gross' in x:
             domestic = str(soup.find_all(class_='mp_box_content')[0].find_all('tr')[0].find_all('td')[1].text.strip())
             studio =  str(soup.find_all('b')[4].text)
@@ -89,11 +88,11 @@ def get_categories(movie_list_url):
                       'runtime': runtime,
                       'rating': rating,
                       'budget': budget,
-                      'foreign': foreign,
-                      'lead': lead})
+                      'foreign': foreign})
 
         rows_list.append(dict1)
-        
+     
+    # saving as we go along    
     if len(rows_list) % 50 == 0:
         with open('my_data_partial.pkl', 'w') as picklefile:
             pickle.dump(rows_list.items(), picklefile)
@@ -101,11 +100,13 @@ def get_categories(movie_list_url):
     
     return rows_list
     
+####################################################
+## Begin executable code
+####################################################
+    
 rows_list = get_categories(movie_list_url)
 movie_list_url = get_movie_list_url()
 
-with open('my_data_partial.pkl', 'w') as picklefile:
-            pickle.dump(rows_list, picklefile)
 
 # Supplemental budget information obtained from the Numbers, scraped using Chrome Scrapper 
 budget = pd.read_csv('budgets.csv') 
@@ -124,7 +125,7 @@ df2.ix[df2['foreign_x'] == 'N/A', 'foreign_x'] = df2['foreign_y']
 df = pd.DataFrame(df2, columns = ['budget_x', 'domestic_x', 'foreign_x', 'genre', 'lead', 'rating', 'release_x', 'runtime', 'studio', 'title'])
 df.rename(columns={'budget_x': 'budget', 'domestic_x': 'domestic', 'foreign_x': 'foreign', 'release_x':'release'}, inplace=True)
 
-
+#what??
 with open('final_data.pkl', 'w') as picklefile:
             pickle.dump(rows_list, picklefile)
 
